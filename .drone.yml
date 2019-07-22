@@ -8,5 +8,11 @@ steps:
   - pip install -r requirements.txt
   - pytest
 
-
+steps:
+- name: slack
+  image: plugins/slack
+  settings:
+    webhook:
+      from_secret: slack_webhook
+    channel: alguno
 
