@@ -38,7 +38,7 @@ steps:
 - name: build-and-publish-to-ecr-when-pr-dev  
   image: plugins/ecr
   settings:
-    tags: $DRONE_COMMIT
+    tags: "$DRONE_COMMIT"
     access_key:
       from_secret: aws_access_key_id
     secret_key:
