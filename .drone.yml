@@ -2,13 +2,34 @@ kind: pipeline
 name: default
 
 steps:
-- name: test
+- name: test_develop
   image: python
   commands:
   - pip install -r requirements.txt
   - pytest
-
-steps:
+  when:
+    branch:
+    - feature-*
+- name: test-on-merge-develop
+  image: python
+  commands:
+  - pip install -r requirements.txt
+  - pytest
+  when:
+    event:
+    - pull_request
+    branch:
+    - feature-*
+- name: test-on-merge-develop
+  image: python
+  commands:
+  - pip install -r requirements.txt
+  - pytest
+  when:
+    event:
+    - merge
+    branch:
+    - develop
 - name: slack
   image: plugins/slack
   settings:
