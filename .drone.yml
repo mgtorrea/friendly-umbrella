@@ -36,6 +36,8 @@ steps:
 
 - name: docker  
   image: plugins/docker
+  settings:
+    repo: test-umbrella
 
 - name: slack
   image: plugins/slack
