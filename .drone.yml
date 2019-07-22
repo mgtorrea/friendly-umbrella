@@ -35,28 +35,21 @@ steps:
     branch:
     - develop
 
-- name: build-on-develop-and-master
-  image: plugins/docker
-  settings:
-    repo: test-umbrella
-    dry_run: true
-    purge: false
-  when:
-    event:
-    - pull_request
-    branch:
-    - develop
-    - master
-
-- name: publish-to-ecr-when-pr-dev  
+- name: build-and-publish-to-ecr-when-pr-dev  
   image: plugins/ecr
   settings:
+    tags: $DRONE_COMMIT
     access_key:
       from_secret: aws_access_key_id
     secret_key:
       from_secret: aws_secret_access_key
     repo: 982989130295.dkr.ecr.us-east-1.amazonaws.com/datank/test-drone
     registry: 982989130295.dkr.ecr.us-east-1.amazonaws.com
+  when:
+    event:
+    - pull_request
+    branch:
+    - develop
 
 - name: notify-build-to-slack
   image: plugins/slack
