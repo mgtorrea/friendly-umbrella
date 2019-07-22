@@ -12,7 +12,7 @@ steps:
     branch:
     - feature-*
 
-- name: test-on-pullrequest-to-develop
+- name: test-on-pullrequest-to-develop-and-master
   image: python
   commands:
   - pip install -r requirements-test.txt
@@ -21,7 +21,8 @@ steps:
     event:
     - pull_request
     branch:
-    - feature-*
+    - develop
+    - master
 
 - name: test-on-merge-develop
   image: python
@@ -46,6 +47,16 @@ steps:
     branch:
     - develop
     - master
+
+- name: publish-to-ecr-when-pr-dev  
+  image: plugins/ecr
+  settings:
+    access_key:
+      from_secret: aws_access_key_id
+    secret_key:
+      from_secret: aws_secret_access_key
+    repo: 982989130295.dkr.ecr.us-east-1.amazonaws.com/datank/test-drone
+    registry: 982989130295.dkr.ecr.us-east-1.amazonaws.com
 
 - name: notify-build-to-slack
   image: plugins/slack
