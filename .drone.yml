@@ -38,6 +38,7 @@ steps:
   image: plugins/docker
   settings:
     auto_tag: true
+    repo: noseque
 
 - name: slack
   image: plugins/slack
