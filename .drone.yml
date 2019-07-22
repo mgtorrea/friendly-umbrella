@@ -40,6 +40,11 @@ steps:
     repo: test-umbrella
     dry_run: true
     purge: false
+  when:
+    event:
+    - pull_request
+    branch:
+    - feature-*
 
 - name: slack
   image: plugins/slack
