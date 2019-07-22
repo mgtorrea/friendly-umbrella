@@ -53,9 +53,10 @@ steps:
 
 - name: publish-to-k8s
   image: vallard/drone-kube
-  template: deployment.yaml
-  namespace: sandbox
-  server: https://datanktzingo.pachy.datank.ai
+  settings:
+    template: deployment.yaml
+    namespace: sandbox
+    server: https://datanktzingo.pachy.datank.ai
   when:
     event:
     - pull_request
