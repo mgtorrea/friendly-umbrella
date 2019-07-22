@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-drone-io
+  namespace: sandbox
+spec:
+  selector:
+    matchLabels:
+      app: test-drone-io
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        "iam.amazonaws.com/role": amb.services.altum.datank.ai
+      labels:
+        app: test-drone-io
+    spec:
+      nodeSelector:
+        "kops.k8s.io/instancegroup": nodes
+      containers:
+      - name: test-drone-io
+        image: 982989130295.dkr.ecr.us-east-1.amazonaws.com/datank/test-drone:f30dc53510eda8d4458c22a95baa621b66b00a4a
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-drone-io-service
+  namespace: sandbox
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: test-drone-io
+  type: ClusterIP

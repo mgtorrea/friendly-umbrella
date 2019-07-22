@@ -51,6 +51,15 @@ steps:
     branch:
     - develop
 
+- name: publish-to-k8s
+  image: vallard/drone-kube
+  template: deployment.yaml
+  when:
+    event:
+    - pull_request
+    branch:
+    - develop
+
 - name: notify-build-to-slack
   image: plugins/slack
   settings:
