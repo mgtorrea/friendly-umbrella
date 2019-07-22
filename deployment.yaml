@@ -20,7 +20,10 @@ spec:
         "kops.k8s.io/instancegroup": nodes
       containers:
       - name: test-drone-io
-        image: 982989130295.dkr.ecr.us-east-1.amazonaws.com/datank/test-drone:f30dc53510eda8d4458c22a95baa621b66b00a4a
+        image: 982989130295.dkr.ecr.us-east-1.amazonaws.com/datank/test-drone:{{build.commit}}
+        env:
+        - name: COMMIT_ID
+          value: {{build.commit}}
         ports:
         - containerPort: 5000
         resources:
