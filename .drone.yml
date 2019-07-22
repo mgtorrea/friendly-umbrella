@@ -37,7 +37,7 @@ steps:
 - name: docker  
   image: plugins/docker
   settings:
-    repo: local
+    auto_tag: true
 
 - name: slack
   image: plugins/slack
