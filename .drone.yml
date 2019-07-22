@@ -34,7 +34,7 @@ steps:
     branch:
     - develop
 
-- name: docker  
+- name: build-on-develop-and-master
   image: plugins/docker
   settings:
     repo: test-umbrella
@@ -44,9 +44,10 @@ steps:
     event:
     - pull_request
     branch:
-    - feature-*
+    - develop
+    - master
 
-- name: slack
+- name: notify-build-to-slack
   image: plugins/slack
   settings:
     webhook:
