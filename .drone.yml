@@ -2,13 +2,43 @@ kind: pipeline
 name: default
 
 steps:
-- name: test
+
+- name: test_on_each_commit
   image: python
   commands:
-  - pip install -r requirements.txt
+  - pip install -r requirements-test.txt
   - pytest
+  when:
+    branch:
+    - feature-*
 
-steps:
+- name: test-on-pullrequest-to-develop
+  image: python
+  commands:
+  - pip install -r requirements-test.txt
+  - pytest
+  when:
+    event:
+    - pull_request
+    branch:
+    - feature-*
+
+- name: test-on-merge-develop
+  image: python
+  commands:
+  - pip install -r requirements-test.txt
+  - pytest
+  when:
+    event:
+    - merge
+    branch:
+    - develop
+
+- name: docker  
+  image: plugins/docker
+  settings:
+    repo: local
+
 - name: slack
   image: plugins/slack
   settings:
