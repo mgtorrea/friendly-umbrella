@@ -39,6 +39,7 @@ steps:
   settings:
     repo: test-umbrella
     dry_run: true
+    purge: false
 
 - name: slack
   image: plugins/slack
