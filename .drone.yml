@@ -2,7 +2,7 @@ kind: pipeline
 name: default
 
 steps:
-- name: test_develop
+- name: test_on_each_commit
   image: python
   commands:
   - pip install -r requirements.txt
@@ -10,7 +10,7 @@ steps:
   when:
     branch:
     - feature-*
-- name: test-on-merge-develop
+- name: test-on-pullrequest-to-develop
   image: python
   commands:
   - pip install -r requirements.txt
