@@ -38,6 +38,7 @@ steps:
   image: plugins/docker
   settings:
     repo: test-umbrella
+    dry_run: true
 
 - name: slack
   image: plugins/slack
