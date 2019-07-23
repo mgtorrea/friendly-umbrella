@@ -46,8 +46,8 @@ steps:
     repo: 982989130295.dkr.ecr.us-east-1.amazonaws.com/datank/test-drone
     registry: 982989130295.dkr.ecr.us-east-1.amazonaws.com
   when:
-    event:
-    - pull_request
+    #event:
+    #- pull_request
     branch:
     - develop
 
