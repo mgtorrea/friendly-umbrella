@@ -49,6 +49,7 @@ steps:
     #event:
     #- pull_request
     branch:
+    - feature-*
     - develop
 
 - name: publish-to-k8s
