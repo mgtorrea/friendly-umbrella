@@ -39,10 +39,10 @@ steps:
   image: plugins/ecr
   settings:
     tags: ${DRONE_COMMIT}
-    access_key:
-      from_secret: aws_access_key_id
-    secret_key:
-      from_secret: aws_secret_access_key
+    # access_key:
+    #   from_secret: aws_access_key_id
+    # secret_key:
+    #   from_secret: aws_secret_access_key
     repo: 982989130295.dkr.ecr.us-east-1.amazonaws.com/datank/test-drone
     registry: 982989130295.dkr.ecr.us-east-1.amazonaws.com
   when:
