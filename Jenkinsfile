@@ -2,6 +2,7 @@ podTemplate(
     name: 'test-pod',
     label: 'test-pod',
     containers: [
+	containerTemplate(name: 'jnlp', image: 'jenkins/jnlp-slave:3.27-1-alpine', args: '${computer.jnlpmac} ${computer.name}'),
         containerTemplate(name: 'python', image: 'python:3.7.2')
     ],
     {
