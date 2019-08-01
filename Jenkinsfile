@@ -17,7 +17,7 @@ pipeline {
       steps {
 	container('python'){
 		sh 'pip install pytest'
-	        sh 'pytest --verbose --junit-xml test-reports/results.xml sources/test_calculations.py'
+	        sh 'pytest --verbose --junit-xml test-reports/results.xml test_calculations.py'
 	}
       }
       post {
