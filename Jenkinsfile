@@ -21,6 +21,7 @@ pipeline {
     stage('test') {
       steps {
 	container('python'){
+		sh 'pip install -r requirements.txt'
 	        sh 'pytest'
 	}
       }
