@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    "iam.amazonaws.com/role": "arn:aws:iam::982989130295:role/rolecillo.services.datanktzingo.datank.ai"
+spec:
+  nodeSelector:
+    "kops.k8s.io/instancegroup": hexapodo
+  containers:
+  - name: jnlp
+    image: 'jenkins/jnlp-slave:3.27-1-alpine'
+    args: ['\$(JENKINS_SECRET)', '\$(JENKINS_NAME)']
+  - name: python
+    image: 'python:3.7.2'
+    tty: true
+    command: 'cat'
+---
