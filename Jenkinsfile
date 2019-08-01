@@ -1,7 +1,7 @@
 pipeline {
   agent {
     kubernetes {
-	defaultContainer 'jnlp'
+	podRetention 'always()'
 	yamlFile 'JenkinsPod.yaml'
     }
 
@@ -17,12 +17,15 @@ pipeline {
     stage('test') {
       steps {
 	container('python'){
-		sh 'pip install -r requirements-test.txt'
-	        sh 'pytest'
+		sh 'pip install pytest'
+	        sh 'pytest --verbose --junit-xml test-reports/results.xml sources/test_calculations.py'
 	}
+      }
+      post {
+        always {
+            junit 'test-reports/results.xml' 
+        }
       }
     }
   }
 }
-
-
