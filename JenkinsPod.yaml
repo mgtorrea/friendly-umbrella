@@ -8,7 +8,7 @@ metadata:
 spec:
   serviceAccountName: jenkins
   nodeSelector:
-    "kops.k8s.io/instancegroup": hexapodo
+    "kops.k8s.io/instancegroup": nodes
   containers:
   - name: python
     image: 'python:3.7-alpine'
