@@ -18,6 +18,9 @@ spec:
       value: tcp://localhost:2375
   - name: dind
     image: docker:18.05-dind
+    tty: true
+    command: 
+    - cat
     securityContext:
       privileged: true
     volumeMounts:
