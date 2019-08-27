@@ -1,7 +1,12 @@
 ---
 apiVersion: v1
 kind: Pod
+metadata:
+  namespace: jenkins
+  annotations:
+    "iam.amazonaws.com/role": "arn:aws:iam::982989130295:role/lambda-deployer.services.datanktzingo.datank.ai"
 spec:
+  serviceAccountName: jenkins
   nodeSelector:
     "kops.k8s.io/instancegroup": hexapodo
   containers:
