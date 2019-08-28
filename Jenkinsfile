@@ -30,7 +30,7 @@ pipeline {
     stage('deploy'){
       steps{
         container('kubectl'){
-          sh 'kubectl apply -f deployment.yaml'
+          sh 'kubectl apply -f deploy-test-pod.yaml'
         }
       }
     }
