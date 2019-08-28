@@ -15,9 +15,6 @@ spec:
     tty: true
     command: 
     - cat
-    env:
-    - name: DOCKER_HOST
-      value: tcp://localhost:2375
   - name: docker-cli
     image: 'docker:18.05'
     tty: true
@@ -28,9 +25,6 @@ spec:
       value: tcp://localhost:2375
   - name: dind
     image: docker:18.05-dind
-    tty: true
-    command: 
-    - cat
     securityContext:
       privileged: true
     volumeMounts:
