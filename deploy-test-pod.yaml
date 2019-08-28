@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: friendly-umbrella-pod
+spec:
+  containers:
+  - name: app
+    image: 982989130295.dkr.ecr.us-east-2.amazonaws.com/test/friendly-umbrella
+    ports:
+    - containerPort: 5000
