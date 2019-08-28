@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
   - name: app
-    image: 982989130295.dkr.ecr.us-east-2.amazonaws.com/test/friendly-umbrella
+    image: 982989130295.dkr.ecr.us-east-2.amazonaws.com/test/friendly-umbrella:{{VERSION}}
     ports:
     - containerPort: 5000
