@@ -1,0 +1,4 @@
+FROM python:3.7-alpine
+
+RUN pip install awscli --upgrade --no-cache-dir; aws --version
+RUN wget https://download.docker.com/linux/static/stable/x86_64/docker-18.09.0.tgz && tar xzvf docker-18.09.0.tgz && cp docker/* /usr/bin/
