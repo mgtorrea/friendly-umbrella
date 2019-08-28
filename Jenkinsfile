@@ -4,7 +4,9 @@ pipeline {
 	    yamlFile 'JenkinsPod.yaml'
     }
   }
-  
+  environment {
+        IMG_TAG = "build_${env.BUILD_ID}"
+   }
   stages { 
     stage('test'){
       steps{
@@ -19,7 +21,7 @@ pipeline {
     stage('build') {
       steps {
         container('docker-cli'){
-          sh "docker build . -t 982989130295.dkr.ecr.us-east-2.amazonaws.com/test/friendly-umbrella:build_${env.BUILD_ID}"
+          sh "docker build . -t 982989130295.dkr.ecr.us-east-2.amazonaws.com/test/friendly-umbrella:${IMG_TAG}"
         }
         container('aws-cli'){
           sh 'aws sts get-caller-identity'
@@ -31,7 +33,8 @@ pipeline {
     stage('deploy'){
       steps{
         container('kubectl'){
-	  sh "cat deploy-test-pod.yaml | sed 's/{{VERSION}}/$build_${env.BUILD_ID}/g' | kubectl apply -f -"
+	  
+	  sh "cat deploy-test-pod.yaml | sed 's/{{VERSION}}/build_${env.BUILD_ID}/g' | kubectl apply -f -"
           //sh 'kubectl apply -f deploy-test-pod.yaml'
         }
       }
