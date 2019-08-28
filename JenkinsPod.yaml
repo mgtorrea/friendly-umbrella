@@ -15,6 +15,11 @@ spec:
     tty: true
     command: 
     - cat
+  - name: aws-cli
+    image: '982989130295.dkr.ecr.us-west-2.amazonaws.com/datank/aws-cli-base'
+    tty: true
+    command: 
+    - cat
   - name: docker-cli
     image: 'docker:18.05'
     tty: true
