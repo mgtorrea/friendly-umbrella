@@ -7,10 +7,12 @@ pipeline {
   
   stages { 
     stage('test'){
-      container('python'){
-        sh 'pip install -r requirements.txt'
-        sh 'pip install -r requirements-test.txt'
-        sh 'pytest'
+      steps{
+        container('python'){
+          sh 'pip install -r requirements.txt'
+          sh 'pip install -r requirements-test.txt'
+          sh 'pytest'
+        }
       }
      }
     stage('build') {
