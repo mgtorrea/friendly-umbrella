@@ -15,7 +15,7 @@ pipeline {
 	}
 	container('docker-cli'){
 		sh 'aws sts get-caller-identity'
-		sh '$(aws ecr get-login --no-include-email --region us-east-2)
+		sh '$(aws ecr get-login --no-include-email --region us-east-2)'
         	sh 'docker build . -t 982989130295.dkr.ecr.us-east-2.amazonaws.com/test/friendly-umbrella'
 		sh 'docker push 982989130295.dkr.ecr.us-east-2.amazonaws.com/test/friendly-umbrella'
 	}
