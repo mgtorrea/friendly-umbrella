@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: friendly-umbrella-app
+spec:
+  selector:
+    matchLabels:
+      app: friendly-umbrella-app
+  replicas: 1
+  template:
+    metadata:
+      #annotations:
+      #  "iam.amazonaws.com/role": "arn:aws:iam::982989130295:role/s3-api.services.datanktzingo.datank.ai"
+      labels:
+        app: friendly-umbrella-app
+    spec:
+      #nodeSelector:
+      #  "kops.k8s.io/instancegroup": nodes
+      containers:
+      - name: app
+        image: 982989130295.dkr.ecr.us-east-2.amazonaws.com/test/friendly-umbrella
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "20m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: friendly-umbrella-service
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: friendly-umbrella-app
+  type: ClusterIP
