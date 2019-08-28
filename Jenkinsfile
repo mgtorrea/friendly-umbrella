@@ -32,7 +32,7 @@ pipeline {
       steps{
         container('kubectl'){
 	  
-          sh "cat deploy-test-pod.yaml | sed \"s/{{VERSION}}/$build_${env.BUILD_ID}/g\" | kubectl apply -f -"
+          sh "cat deploy-test-pod.yaml | sed \"s\/{{VERSION}}\/$build_${env.BUILD_ID}\/g\" | kubectl apply -f -"
           //sh 'kubectl apply -f deploy-test-pod.yaml'
         }
       }
